@@ -3,5 +3,22 @@
 @tailwind utilities;
 
 body {
-    font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: black;
+}
+
+.initial-bg {
+  background-image: url('/src/assets/images/initial-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(to right, #7700ff, #000, #7700ff),
+    url('../src/assets/images/Down.svg') no-repeat right center;
+  padding-right: 2em;
 }
