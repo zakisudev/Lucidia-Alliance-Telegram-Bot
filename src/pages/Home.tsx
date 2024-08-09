@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import HomeIcon from '../assets/images/Home.svg';
 import DefenseIcon from '../assets/images/Gun.svg';
 import MissionIcon from '../assets/images/Mission.svg';
@@ -23,6 +23,7 @@ const App: React.FC = () => {
       : Number(level) === 3
       ? hexagon1
       : hexagonLvl12;
+
   const levelNames = [
     'Bronze', // From 0 to 4999 coins
     'Silver', // From 5000 coins to 24,999 coins
@@ -36,18 +37,21 @@ const App: React.FC = () => {
     'Lord', // From 1,000,000,000 coins to ∞
   ];
 
-  const levelMinPoints = [
-    999, // Bronze
-    1999, // Silver
-    19999, // Gold
-    199999, // Platinum
-    1999999, // Diamond
-    19999999, // Epic
-    199999999, // Legendary
-    1999999999, // Master
-    19999999999, // GrandMaster
-    199999999999, // Lord
-  ];
+  const levelMinPoints = useMemo(
+    () => [
+      999, // Bronze
+      1999, // Silver
+      19999, // Gold
+      199999, // Platinum
+      1999999, // Diamond
+      19999999, // Epic
+      199999999, // Legendary
+      1999999999, // Master
+      19999999999, // GrandMaster
+      199999999999, // Lord
+    ],
+    []
+  );
 
   const energyFromStore = localStorage.getItem('gift');
 
@@ -62,34 +66,31 @@ const App: React.FC = () => {
   const pointsToAdd = 11 || (Number(level) ? Number(level) : 11);
 
   const profitPerHour = 3600;
-  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState('');
-  const [dailyCipherTimeLeft, setDailyCipherTimeLeft] = useState('');
-  const [dailyComboTimeLeft, setDailyComboTimeLeft] = useState('');
 
-  const calculateTimeLeft = (targetHour: number) => {
-    const now = new Date();
-    const target = new Date(now);
-    target.setUTCHours(targetHour, 0, 0, 0);
+  // const calculateTimeLeft = (targetHour: number) => {
+  //   const now = new Date();
+  //   const target = new Date(now);
+  //   target.setUTCHours(targetHour, 0, 0, 0);
 
-    if (now.getUTCHours() >= targetHour) {
-      target.setUTCDate(target.getUTCDate() + 1);
-    }
+  //   if (now.getUTCHours() >= targetHour) {
+  //     target.setUTCDate(target.getUTCDate() + 1);
+  //   }
 
-    const diff = target.getTime() - now.getTime();
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  //   const diff = target.getTime() - now.getTime();
+  //   const hours = Math.floor(diff / (1000 * 60 * 60));
+  //   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-    const paddedHours = hours.toString().padStart(2, '0');
-    const paddedMinutes = minutes.toString().padStart(2, '0');
+  //   const paddedHours = hours.toString().padStart(2, '0');
+  //   const paddedMinutes = minutes.toString().padStart(2, '0');
 
-    return `${paddedHours}:${paddedMinutes}`;
-  };
+  //   return `${paddedHours}:${paddedMinutes}`;
+  // };
 
   useEffect(() => {
     const updateCountdowns = () => {
-      setDailyRewardTimeLeft(calculateTimeLeft(0));
-      setDailyCipherTimeLeft(calculateTimeLeft(19));
-      setDailyComboTimeLeft(calculateTimeLeft(12));
+      // setDailyRewardTimeLeft(calculateTimeLeft(0));
+      // setDailyCipherTimeLeft(calculateTimeLeft(19));
+      // setDailyComboTimeLeft(calculateTimeLeft(12));
     };
 
     updateCountdowns();
