@@ -54,10 +54,6 @@ const App: React.FC = () => {
   const [currentEnergy, setCurrentEnergy] = useState(999); // current energy
   const maxEnergy = 999; // maximum energy
 
-  const calculateEnergyBarWidth = () => {
-    return (currentEnergy / maxEnergy) * 100;
-  };
-
   const [levelIndex, setLevelIndex] = useState(Number(level) - 1);
   const [points, setPoints] = useState(0);
   const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>(
