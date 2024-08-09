@@ -7,7 +7,7 @@ export default {
         phone: '460px',
       },
       fontFamily: {
-        sans: ['ClashGrotesk', 'sans'],
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },
